@@ -1,0 +1,33 @@
+{
+  "name": "send-tweet",
+  "description": "send-tweet",
+  "version": "0.0.1",
+  "author": {
+    "name": "Zac Anger",
+    "email": "zac@zacanger.com",
+    "url": "http://zacanger.com"
+  },
+  "license": "WTFPL",
+  "main": "index.js",
+  "preferGlobal": true,
+  "bin": "./index.js",
+  "scripts": {
+    "start": "node index",
+    "test": ""
+  },
+  "homepage": "https://github.com/zacanger/send-tweet#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zacanger/send-tweet.git"
+  },
+  "bugs": "https://github.com/zacanger/send-tweet/issues",
+  "keywords": [
+    "",
+    "send-tweet"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}
