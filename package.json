@@ -12,8 +12,7 @@
   "preferGlobal": true,
   "bin": "./index.js",
   "scripts": {
-    "start": "node index",
-    "test": ""
+    "start": "node index"
   },
   "homepage": "https://github.com/zacanger/send-tweet#readme",
   "repository": {
@@ -22,8 +21,11 @@
   },
   "bugs": "https://github.com/zacanger/send-tweet/issues",
   "keywords": [
-    "",
-    "send-tweet"
+    "cli",
+    "client",
+    "send-tweet",
+    "tweet",
+    "twitter"
   ],
   "dependencies": {},
   "devDependencies": {},
