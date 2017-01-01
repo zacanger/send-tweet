@@ -1,7 +1,7 @@
 {
   "name": "send-tweet",
   "description": "send-tweet",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "Zac Anger",
     "email": "zac@zacanger.com",
@@ -27,7 +27,9 @@
     "tweet",
     "twitter"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "twitter": "^1.7.0"
+  },
   "devDependencies": {},
   "engines": {
     "node": ">=6.0.0"

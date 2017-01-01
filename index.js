@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
-/* eslint-disable no-unused-vars */
-
-console.log('Coming soon!')
+console.log('COMING VERY SOON I PROMISE')
 process.exit(0)
 
 if (module.parent) {
@@ -11,40 +9,43 @@ if (module.parent) {
 }
 
 const { homedir } = require('os')
-const { request } = require('https')
 const help = () => `
   send-tweet
   usage: send-tweet 'A tweet!'
 `
 
-const getHome = () =>
-  process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE ||
-  homedir() ||
-  process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
-
-const { readFileSync } = require('fs')
+const userHome = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE || homedir()
+const { readFileSync, statSync } = require('fs')
 const fileName = '.send-tweet.json'
-const fileLoc = `${getHome()}/${fileName}`
+const fileLoc = `${userHome}/${fileName}`
+
+try {
+  statSync(fileLoc)
+} catch (e) {
+  console.warn(`
+    Please put access_token_key and access_token_secret in
+    ~/.send-tweet.json
+  `)
+  process.exit(1)
+}
+
 const fileCont = readFileSync(fileLoc)
-const cfg = JSON.parse(fileCont)
+const { access_token_key, access_token_secret } = JSON.parse(fileCont)
+const Twitter = require('twitter')
+const auth = {
+  consumer_key: 'mqbbtwLkNkRgXFfjv2PV3EG1R'
+, consumer_secret: '7kximrfr2NQy2V9I9hAm6WR2jvjwj7HBLYwaJuSRJ3zwFybAdU'
+, access_token_key
+, access_token_secret
+}
+const client = new Twitter(auth)
 const theTweet = process.argv[2]
 if (!theTweet || process.argv[3]) return help()
 
-/*
-we want to post to statuses/update.json i guess
-see https://dev.twitter.com/rest/reference/post/statuses/update
-*/
-
-const main = (a) => (
-  request({
-    method: 'POST'
-  , hostname: 'api.twitter.com'
-  , pathname: `/1.1/statuses/update.json?${encodeURIComponent(a)}`
-  }, (res) => {
-    res.on('end', () => {
-      console.log(res.statusCode)
-    })
+const main = (a) =>
+  client.post('statuses/update', { status: a }, (err, tweet, res) => {
+    if (err) return console.warn('Error:', err[0].message)
+    console.log(`Tweet '${tweet.text}' sent!`)
   })
-)
 
 main(theTweet)
