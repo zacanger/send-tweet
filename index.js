@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 
+/* eslint-disable no-unused-vars */
+
+const { argv, exit, env, stdout, stdin } = process
+
 console.log('COMING VERY SOON I PROMISE')
-process.exit(0)
+exit(0)
 
 if (module.parent) {
   console.warn('Please use CLI!')
-  process.exit(1)
+  exit(1)
 }
 
 const { homedir } = require('os')
@@ -14,8 +18,9 @@ const help = () => `
   usage: send-tweet 'A tweet!'
 `
 
-const userHome = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE || homedir()
+const userHome = env.HOME || env.HOMEPATH || env.USERPROFILE || homedir()
 const { readFileSync, statSync } = require('fs')
+const { createInterface } = require('readline')
 const fileName = '.send-tweet.json'
 const fileLoc = `${userHome}/${fileName}`
 
@@ -26,7 +31,7 @@ try {
     Please put access_token_key and access_token_secret in
     ~/.send-tweet.json
   `)
-  process.exit(1)
+  exit(1)
 }
 
 const fileCont = readFileSync(fileLoc)
@@ -38,9 +43,26 @@ const auth = {
 , access_token_key
 , access_token_secret
 }
+
+const getPin = () => (
+  new Promise((resolve) => {
+    const rlInterface = createInterface({
+      input: stdin
+    , output: stdout
+    })
+    const message = 'Please enter the PIN.'
+
+    rlInterface.question(message, (answer) => {
+      rlInterface.close()
+      const pin = answer.trim()
+      return resolve(pin)
+    })
+  })
+)
+
 const client = new Twitter(auth)
-const theTweet = process.argv[2]
-if (!theTweet || process.argv[3]) return help()
+const theTweet = argv[2]
+if (!theTweet || argv[3]) return help()
 
 const main = (a) =>
   client.post('statuses/update', { status: a }, (err, tweet, res) => {
