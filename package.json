@@ -28,7 +28,7 @@
     "twitter"
   ],
   "dependencies": {
-    "twitter": "^1.7.0"
+    "twitter": "1.7.1"
   },
   "devDependencies": {},
   "engines": {
