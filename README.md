@@ -31,4 +31,4 @@ Then: `send-tweet "Sending a tweet!"`
 
 ## License:
 
-[WTFPL](./LICENSE.md)
+[MIT](./LICENSE.md)
