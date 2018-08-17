@@ -1,5 +1,7 @@
 # send-tweet
 
+**Unmaintained**
+
 Super-simple Twitter CLI thing.
 
 Just sending a tweet. Literally does nothing else, at all.

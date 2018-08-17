@@ -1,6 +1,6 @@
 {
   "name": "send-tweet",
-  "description": "send-tweet",
+  "description": "Unmaintained: Super simple Tweet-sending CLI tool in Node.",
   "version": "1.0.1",
   "author": {
     "name": "Zac Anger",
