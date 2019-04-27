@@ -34,10 +34,10 @@ if (!consumer_key || !consumer_secret || !access_token_key || !access_token_secr
 
 const Twitter = require('twitter')
 const auth = {
-  consumer_key
-, consumer_secret
-, access_token_key
-, access_token_secret
+  consumer_key,
+  consumer_secret,
+  access_token_key,
+  access_token_secret,
 }
 
 const client = new Twitter(auth)
@@ -45,7 +45,7 @@ const theTweet = argv[2]
 if (!theTweet || argv[3]) return help()
 
 const main = (a) =>
-  client.post('statuses/update', { status: a }, (err, tweet, res) => {
+  client.post('statuses/update', { status: a }, (err, tweet) => {
     if (err) return console.warn('Error:', err[0].message)
     console.log(`Tweet '${tweet.text}' sent!`)
   })
