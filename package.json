@@ -1,10 +1,10 @@
 {
   "name": "send-tweet",
   "description": "Super simple Tweet-sending CLI tool in Node.",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "author": {
-    "name": "Zac Anger",
     "email": "zac@zacanger.com",
+    "name": "Zac Anger",
     "url": "http://zacanger.com"
   },
   "license": "MIT",
