@@ -37,12 +37,12 @@ const auth = {
   consumer_key,
   consumer_secret,
   access_token_key,
-  access_token_secret,
+  access_token_secret
 }
 
 const client = new Twitter(auth)
 const theTweet = argv[2]
-if (!theTweet || argv[3]) return help()
+if (!theTweet || argv[3]) help()
 
 const main = (a) =>
   client.post('statuses/update', { status: a }, (err, tweet) => {
