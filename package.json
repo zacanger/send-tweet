@@ -31,8 +31,8 @@
     "twitter": "1.7.1"
   },
   "devDependencies": {
-    "sortpack": "1.1.7",
-    "standard": "12.0.1"
+    "sortpack": "2.0.1",
+    "standard": "14.3.1"
   },
   "engines": {
     "node": ">=8.0.0"
